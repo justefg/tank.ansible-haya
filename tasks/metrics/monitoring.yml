@@ -16,7 +16,7 @@
     dest: "/etc/prometheus/targets/{{ target_ip }}.yml"
   vars:
     - target_ports: ["8080", "9100", "8889"]
-  when: install_promstack == "true"
+  when: install_promstack
   loop_control:
     loop_var: target_ip
 
@@ -39,7 +39,6 @@
 
 - name: Form slug from Title
   shell: |
-    set -o pipefail
     echo "{{ Title }}" | sed -e "s/ /-/g" | tr '[:upper:]' '[:lower:]'
   register: slugout
 
@@ -58,7 +57,6 @@
 
 - name: Get dashboard uid
   shell: |
-    set -o pipefail
     cat /root/dashboard.json | grep uid | sed -e s/uid//g | tr -d ', ":'
   register: uid_from_file
 
@@ -96,8 +94,8 @@
         imported: true
   when:
     - slughttpresponse.status == 404
-    - dashboard_exist.stat.exists
-    - imported
+    - not dashboard_exist.stat.exists
+    - not imported
 
 - name: "Reimport Grafana dashboard (if dashboard file changed)"
   block:
@@ -122,5 +120,5 @@
   when:
     - dashboard.changed
     - slughttpresponse.status == 404
-    - is not imported
-    - is not dashboard_exist.stat.exists
+    - not imported
+    - not dashboard_exist.stat.exists
