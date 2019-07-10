@@ -191,8 +191,7 @@
     {{ bc_haya_cli }} \
     --wallet-url=http://localhost:{{ bc_haya_wallet.port }} \
     --url=http://localhost:{{ bc_haya_node_http_port }} \
-    push action eosio.token create '["eosio", "{{ bc_haya_tokens_amount }} \
-    BET"]' -p eosio.token && \
+    push action eosio.token create '["eosio", "1000000000000.0000 BET"]' -p eosio.token && \
     touch {{ bc_path_state }}/createtoken
   args:
     creates: "{{ bc_path_state }}/createtoken"
@@ -210,8 +209,7 @@
     {{ bc_haya_cli }} \
     --wallet-url=http://localhost:{{ bc_haya_wallet.port }} \
     --url=http://localhost:{{ bc_haya_node_http_port }} \
-    push action eosio.token issue '["eosio", "{{ bc_haya_tokens_amount }} \
-    BET", "memo"]' -p eosio && \
+    push action eosio.token issue '["eosio", "167270821.0000 BET", "memo"]' -p eosio && \
     touch {{ bc_path_state }}/allocatetokens
   args:
     creates: "{{ bc_path_state }}/allocatetokens"
@@ -252,8 +250,8 @@
     --wallet-url=http://localhost:{{ bc_haya_wallet.port }} \
     --url=http://localhost:{{ bc_haya_node_http_port }} \
     system newaccount -x 45 eosio --transfer {{ item.name }} \
-    {{ item.pub_key }} --stake-net "2500000000.0000 BET" \
-    --stake-cpu "2500000000.0000 BET" --buy-ram-kbytes 8192 && \
+    {{ item.pub_key }} --stake-net "5000000.0000 BET" \
+    --stake-cpu "5000000.0000 BET" --buy-ram-kbytes 8192 && \
     touch {{ bc_path_state }}/createprodacc-{{ item.name }}
   args:
     creates: "{{ bc_path_state }}/createprodacc-{{ item.name }}"
