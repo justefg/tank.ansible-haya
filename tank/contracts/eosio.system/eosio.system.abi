@@ -372,6 +372,10 @@
                     "type": "asset"
                 },
                 {
+                    "name": "stake_vote_quantity",
+                    "type": "asset"
+                },
+                {
                     "name": "transfer",
                     "type": "bool"
                 }
@@ -395,6 +399,10 @@
                 },
                 {
                     "name": "cpu_weight",
+                    "type": "asset"
+                },
+                {
+                    "name": "vote_weight",
                     "type": "asset"
                 }
             ]
@@ -880,6 +888,10 @@
                 {
                     "name": "cpu_amount",
                     "type": "asset"
+                },
+                {
+                    "name": "vote_amount",
+                    "type": "asset"
                 }
             ]
         },
@@ -1346,6 +1358,10 @@
                 {
                     "name": "unstake_cpu_quantity",
                     "type": "asset"
+                },
+                {
+                    "name": "unstake_vote_quantity",
+                    "type": "asset"
                 }
             ]
         },
@@ -1455,6 +1471,10 @@
                 },
                 {
                     "name": "cpu_weight",
+                    "type": "asset"
+                },
+                {
+                    "name": "vote_weight",
                     "type": "asset"
                 },
                 {
